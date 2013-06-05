@@ -1,9 +1,8 @@
-
 # model-defaults
 
   Lets a model specify default attribute values.
 
-  Note: for right now this only works with `[segmentio-model](https://github.com/segmentio/model` until `[component-model](https://github.com/component/model)` merges in [#38](https://github.com/component/model/pull/38).
+  _Note: for right now this only works with [`segmentio-model`](https://github.com/segmentio/model) until [`component-model`](https://github.com/component/model) merges in [#38](https://github.com/component/model/pull/38)._
 
 ## Installation
 

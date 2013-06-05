@@ -1,0 +1,55 @@
+describe('model-defaults', function () {
+  var defaults = require('model-defaults')
+    , assert = require('component-assert')
+    , model = require('segmentio-model')
+    , type = require('component-type');
+
+  it('should accept all defaults up front', function () {
+    var Ninja = model('ninja')
+      .use(defaults({
+        weapons : 7,
+        belt : 'black'
+      }))
+      .attr('weapons')
+      .attr('belt');
+
+    var ninja = new Ninja();
+    assert(7 === ninja.weapons());
+    assert('black' === ninja.belt());
+  });
+
+  it('should accept individual defaults', function () {
+    var Pirate = model('pirate')
+      .use(defaults)
+      .attr('name', { default: 'Hook' })
+      .attr('legs', { default: 1 });
+
+    var pirate = new Pirate();
+    assert('Hook' === pirate.name());
+    assert(1 === pirate.legs());
+  });
+
+  it('should call functions', function () {
+    var Person = model('person')
+      .use(defaults)
+      .attr('age', { default: function () { return 42; } });
+
+    var person = new Person();
+    assert(42 === person.age());
+  });
+
+  it('should clone objects and arrays', function () {
+    var array = [];
+    var object = {};
+    var Thing = model('thing')
+      .use(defaults)
+      .attr('array', { default: array })
+      .attr('object', { default: object });
+
+    var thing = new Thing();
+    assert('object' === type(thing.object()));
+    assert(object !== thing.object());
+    assert('array' === type(thing.array()));
+    assert(array !== thing.array());
+  });
+});

@@ -2,8 +2,6 @@
 
   Lets a model specify default attribute values.
 
-  _Note: for right now this only works with [`segmentio/model`](https://github.com/segmentio/model) until [`component/model`](https://github.com/component/model) merges in [#38](https://github.com/component/model/pull/38) or similar._
-
 ## Installation
 
     $ component install segmentio/model-defaults

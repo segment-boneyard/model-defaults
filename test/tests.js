@@ -4,6 +4,14 @@ describe('model-defaults', function () {
     , model = require('segmentio-model')
     , type = require('component-type');
 
+  it('should work for values that are falsey', function(){
+    var Ninja = model('Ninja')
+      .use(defaults)
+      .attr('weapons', { default: 0 });
+
+    assert(0 == new Ninja().weapons());
+  })
+
   it('should accept all defaults up front', function () {
     var Ninja = model('ninja')
       .use(defaults({

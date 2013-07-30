@@ -31,7 +31,10 @@ function bind (Model, defaults) {
   defaults || (defaults = {});
   Model.on('construct', function (model, attrs) {
     each(Model.attrs, function (key, options) {
-      var value = options.default || defaults[key];
+      var value = undefined != options.default
+        ? options.default
+        : defaults[key];
+
       if (value !== undefined) apply(model, key, value);
     });
   });

@@ -46,6 +46,18 @@ describe('model-defaults', function () {
     assert(42 === person.age());
   });
 
+  it('should call functions in the context of the model', function() {
+
+    var Person = model('person')
+      .use(defaults)
+      .attr('age', { default: 42 })
+      .attr('wrinkles', { default: function () { return this.age() * 2; }})
+
+    var person = new Person();
+
+    assert(84 === person.wrinkles());
+  });
+
   it('should clone objects and arrays', function () {
     var array = [];
     var object = {};

@@ -52,6 +52,6 @@ function bind (Model, defaults) {
  */
 
 function apply (model, key, value) {
-  if ('function' === type(value)) value = value();
+  if ('function' === type(value)) value = value.call(model);
   if (!model.attrs[key]) model.attrs[key] = clone(value);
 }

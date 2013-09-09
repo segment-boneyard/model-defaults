@@ -43,7 +43,7 @@ function bind (Model, defaults) {
 
 /**
  * Default a `model` with a `value` for a `key` if it doesn't exist. Use a clone
- * of the value if it is an object literal or array literal, so that it's
+ * of the value if it is not passed from a function, so that it's
  * easy to declare objects and arrays without worrying about copying by reference.
  *
  * @param {Model}          model  The model.
@@ -52,6 +52,7 @@ function bind (Model, defaults) {
  */
 
 function apply (model, key, value) {
-  if ('function' === type(value)) value = value.call(model);
-  if (!model.attrs[key]) model.attrs[key] = value && [Object, Array].indexOf(value.constructor) != -1 ? clone(value) : value;
+  var isFn = 'function' === type(value);
+  if (isFn) value = value.call(model);
+  if (!model[key]()) model[key](isFn ? value : clone(value));
 }

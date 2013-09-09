@@ -72,4 +72,24 @@ describe('model-defaults', function () {
     assert('array' === type(thing.array()));
     assert(array !== thing.array());
   });
+
+  it('should not clone objects returned from functions', function () {
+
+    var Custom = function() {
+      return this;
+    };
+
+    Custom.prototype.someProp = function() {};
+
+    var Thing = model('thing')
+      .use(defaults)
+      .attr('custom', { default: function() {
+        return new Custom();
+      }});
+
+    var thing = new Thing();
+
+    assert('object' === type(thing.custom()));
+    assert('function' === type(thing.custom().someProp));
+  });
 });

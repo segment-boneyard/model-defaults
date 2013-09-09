@@ -1,8 +1,8 @@
 
 var clone = require('clone')
   , each = require('each')
-  , type = require('type');
-
+  , type = require('type')
+  , is = require('is');
 
 /**
  * Plugin.
@@ -43,8 +43,8 @@ function bind (Model, defaults) {
 
 /**
  * Default a `model` with a `value` for a `key` if it doesn't exist. Use a clone
- * of the value, so that they it's easy to declare objects and arrays without
- * worrying about copying by reference.
+ * of the value if it is not passed from a function, so that it's
+ * easy to declare objects and arrays without worrying about copying by reference.
  *
  * @param {Model}          model  The model.
  * @param {String}         key    The key to back by a default.
@@ -52,6 +52,7 @@ function bind (Model, defaults) {
  */
 
 function apply (model, key, value) {
-  if ('function' === type(value)) value = value();
-  if (!model.attrs[key]) model.attrs[key] = clone(value);
+  if(model[key]() !== undefined) return;
+  value = is.function(value) ? value.call(model) : clone(value);
+  model[key](value);
 }

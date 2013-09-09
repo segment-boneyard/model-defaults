@@ -43,8 +43,8 @@ function bind (Model, defaults) {
 
 /**
  * Default a `model` with a `value` for a `key` if it doesn't exist. Use a clone
- * of the value, so that they it's easy to declare objects and arrays without
- * worrying about copying by reference.
+ * of the value if it is an object literal or array literal, so that it's
+ * easy to declare objects and arrays without worrying about copying by reference.
  *
  * @param {Model}          model  The model.
  * @param {String}         key    The key to back by a default.
@@ -53,5 +53,5 @@ function bind (Model, defaults) {
 
 function apply (model, key, value) {
   if ('function' === type(value)) value = value.call(model);
-  if (!model.attrs[key]) model.attrs[key] = clone(value);
+  if (!model.attrs[key]) model.attrs[key] = value && [Object, Array].indexOf(value.constructor) != -1 ? clone(value) : value;
 }

@@ -46,6 +46,18 @@ describe('model-defaults', function () {
     assert(42 === person.age());
   });
 
+  it('should call functions in the context of the model', function() {
+
+    var Person = model('person')
+      .use(defaults)
+      .attr('age', { default: 42 })
+      .attr('wrinkles', { default: function () { return this.age() * 2; }})
+
+    var person = new Person();
+
+    assert(84 === person.wrinkles());
+  });
+
   it('should clone objects and arrays', function () {
     var array = [];
     var object = {};
@@ -59,5 +71,18 @@ describe('model-defaults', function () {
     assert(object !== thing.object());
     assert('array' === type(thing.array()));
     assert(array !== thing.array());
+  });
+
+  it('should not clone objects returned from functions', function () {
+    var obj = {};
+    var Thing = model('thing')
+      .use(defaults)
+      .attr('custom', { default: function() {
+        return obj;
+      }});
+
+    var thing = new Thing();
+    assert('object' === type(thing.custom()));
+    assert(obj === thing.custom());
   });
 });

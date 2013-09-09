@@ -74,22 +74,15 @@ describe('model-defaults', function () {
   });
 
   it('should not clone objects returned from functions', function () {
-
-    var Custom = function() {
-      return this;
-    };
-
-    Custom.prototype.someProp = function() {};
-
+    var obj = {};
     var Thing = model('thing')
       .use(defaults)
       .attr('custom', { default: function() {
-        return new Custom();
+        return obj;
       }});
 
     var thing = new Thing();
-
     assert('object' === type(thing.custom()));
-    assert('function' === type(thing.custom().someProp));
+    assert(obj === thing.custom());
   });
 });

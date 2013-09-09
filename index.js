@@ -1,8 +1,8 @@
 
 var clone = require('clone')
   , each = require('each')
-  , type = require('type');
-
+  , type = require('type')
+  , is = require('is');
 
 /**
  * Plugin.
@@ -52,7 +52,7 @@ function bind (Model, defaults) {
  */
 
 function apply (model, key, value) {
-  var isFn = 'function' === type(value);
-  if (isFn) value = value.call(model);
-  if (!model[key]()) model[key](isFn ? value : clone(value));
+  if(model[key]() !== undefined) return;
+  value = is.function(value) ? value.call(model) : clone(value);
+  model[key](value);
 }

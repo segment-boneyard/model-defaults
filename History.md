@@ -1,3 +1,7 @@
+0.1.1 - January 20, 2013
+------------------------
+* node support
+
 0.1.0 - September 9, 2013
 -------------------------
 * functions don't return cloned values, by [@treygriffith](https://github.com/treygriffith)

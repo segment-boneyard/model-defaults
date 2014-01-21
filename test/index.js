@@ -1,8 +1,16 @@
+
+try {
+  var defaults = require('model-defaults');
+  var type = require('type');
+} catch (e) {
+  var defaults = require('..');
+  var type = require('component-type');
+}
+
+var assert = require('assert');
+var model = require('model');
+
 describe('model-defaults', function () {
-  var defaults = require('model-defaults')
-    , assert = require('component-assert')
-    , model = require('segmentio-model')
-    , type = require('component-type');
 
   it('should work for values that are falsey', function(){
     var Ninja = model('Ninja')
@@ -10,7 +18,7 @@ describe('model-defaults', function () {
       .attr('weapons', { default: 0 });
 
     assert(0 == new Ninja().weapons());
-  })
+  });
 
   it('should accept all defaults up front', function () {
     var Ninja = model('ninja')
@@ -51,7 +59,7 @@ describe('model-defaults', function () {
     var Person = model('person')
       .use(defaults)
       .attr('age', { default: 42 })
-      .attr('wrinkles', { default: function () { return this.age() * 2; }})
+      .attr('wrinkles', { default: function () { return this.age() * 2; }});
 
     var person = new Person();
 

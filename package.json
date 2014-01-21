@@ -1,0 +1,21 @@
+{
+  "name": "model-defaults",
+  "repository": "git://github.com/segmentio/model-defaults.git",
+  "description": "Lets a model specify default attribute values.",
+  "keywords": [
+    "model",
+    "default",
+    "defaults"
+  ],
+  "license": "MIT",
+  "version": "0.1.0",
+  "dependencies": {
+    "component-type": "1.0.0",
+    "each-component": "0.1.0",
+    "clone-component": "~0.1.0",
+    "is": "git://github.com/ianstormtaylor/is#0.1.0"
+  },
+  "devDependencies": {
+    "model": "git://github.com/component/model"
+  }
+}

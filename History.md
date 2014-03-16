@@ -1,4 +1,8 @@
-0.1.1 - January 20, 2013
+0.2.0 - March 16, 2014
+----------------------
+* attributes are set directly so change events are not called
+
+0.1.1 - January 20, 2014
 ------------------------
 * node support
 

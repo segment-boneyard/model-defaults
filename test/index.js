@@ -93,4 +93,15 @@ describe('model-defaults', function () {
     assert('object' === type(thing.custom()));
     assert(obj === thing.custom());
   });
+
+  it('should set the attributes directly so that change events are not called', function () {
+    var Thing = model('thing')
+      .use(defaults)
+      .attr('age', { default: 42 })
+      .on('change', function() {
+        assert(false, 'Change event was called on creation.');
+      });
+
+    new Thing();
+  });
 });

@@ -61,5 +61,5 @@ function bind (Model, defaults) {
 function apply (model, key, value) {
   if(model[key]() !== undefined) return;
   value = is.function(value) ? value.call(model) : clone(value);
-  model[key](value);
+  model.attrs[key] = value;
 }

@@ -10,10 +10,10 @@
   "license": "MIT",
   "version": "0.2.0",
   "dependencies": {
+    "clone-component": "~0.1.0",
     "component-type": "1.0.0",
     "each-component": "0.1.0",
-    "clone-component": "~0.1.0",
-    "is": "git://github.com/ianstormtaylor/is#0.1.0"
+    "is": "git://github.com/ianstormtaylor/is#0.1.1"
   },
   "devDependencies": {
     "model": "git://github.com/component/model"

@@ -1,3 +1,9 @@
+
+0.2.1 / 2014-03-26
+==================
+
+ * bump ianstormtaylor/is for shrinkwrap support
+
 0.2.0 - March 16, 2014
 ----------------------
 * attributes are set directly so change events are not called

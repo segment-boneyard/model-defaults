@@ -12,7 +12,7 @@
   "dependencies": {
     "clone-component": "~0.1.0",
     "component-type": "1.0.0",
-    "each-component": "0.1.0",
+    "each-component": "git://github.com/segmentio/each#0.1.x",
     "is": "git://github.com/ianstormtaylor/is#0.1.1"
   },
   "devDependencies": {

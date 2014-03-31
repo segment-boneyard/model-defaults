@@ -5,6 +5,7 @@
 ## Installation
 
     $ component install segmentio/model-defaults
+    $ npm install model-defaults
 
 ## API
 

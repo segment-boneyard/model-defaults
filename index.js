@@ -1,7 +1,7 @@
 var clone = require('component-clone');
 var each = require('component-each');
 var type = require('component-type');
-var is = require('componetn-is');
+var is = require('component-is');
 
 /**
  * Plugin.
